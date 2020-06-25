@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="Pull Requests são bem vindos!" />
 <br/>
 <br/> 
-<a href="https://playstore.com">
+<a href="https://play.google.com/store/apps/details?id=com.cardapiomobileuerj">
 <img src="./resources/google-play-badge.png" width=180 alt="Link para o Google Play"/>
 </a>
 </div>
