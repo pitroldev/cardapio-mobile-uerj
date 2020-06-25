@@ -1,8 +1,8 @@
 <div align="center">
 <img src="./resources/web_hi_res_512.png" width="150" alt="Logo do Cardápio Mobile UERJ" />
 <h1>Cardápio Mobile UERJ</h1>    
-<a href="/releases/tag/1.0">
-<img src="https://img.shields.io/badge/version-1.0-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
+<a href="https://github.com/pitroldev/cardapio-mobile-uerj/releases">
+<img src="https://img.shields.io/badge/version-1.00-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
 </a>
 <a href="/blob/master/LICENSE.txt">
 <img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />    
