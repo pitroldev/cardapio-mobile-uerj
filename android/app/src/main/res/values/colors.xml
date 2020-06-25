@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<resources>
+  <color name="primary">#016BA5</color>
+  <color name="secondary">#0080c6</color>
+  <color name="shadow">#01507c</color>
+  <color name="red">#C73629</color>
+  <color name="gold">#E0AC40</color>
+</resources>
