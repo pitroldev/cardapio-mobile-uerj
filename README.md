@@ -4,7 +4,7 @@
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/releases">
 <img src="https://img.shields.io/badge/version-1.00-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
 </a>
-<a href="/blob/master/LICENSE.txt">
+<a href="https://github.com/pitroldev/cardapio-mobile-uerj/blob/master/LICENSE.txt">
 <img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />    
 </a>
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="Pull Requests são bem vindos!" />
