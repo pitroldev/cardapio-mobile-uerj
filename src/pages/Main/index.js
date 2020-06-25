@@ -53,10 +53,12 @@ export default class Main extends Component {
 
       if (htmlString !== null) {
         this.setState({ htmlString, offline: true });
+        this.initAnimation();
         return this.parseData();
       }
       throw new Error('Bad Storage');
     } catch (err) {
+      this.initAnimation();
       await AsyncStorage.removeItem('@cardapio');
       return this.setState({
         networkError: true,

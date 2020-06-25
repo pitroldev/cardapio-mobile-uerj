@@ -19,6 +19,7 @@ const Title = styled.Text`
 const Column = styled.View`
   flex: 1;
   padding: 2%;
+  margin-top: ${props => (props.margin ? props.margin : 0)}%;
   align-items: center;
   justify-content: flex-end;
 `;
@@ -52,9 +53,9 @@ export const ParseErrorHeader = () => (
 );
 
 export const NetworkErrorView = () => (
-  <>
+  <Column margin={25}>
     <Icon name={'warning'} size={Responsive(60)} color={'#fff'} margin={10} />
     <Title>Ops... Ocorreu um erro :(</Title>
     <Title>{'\n'}Sem conexão disponível.</Title>
-  </>
+  </Column>
 );

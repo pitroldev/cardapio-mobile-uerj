@@ -1,6 +1,5 @@
 nextcommit.txt
 
-android/*.properties
 android/gradle.properties
 android/app/cardapio-mobile-uerj-key.keystore
 # OSX
