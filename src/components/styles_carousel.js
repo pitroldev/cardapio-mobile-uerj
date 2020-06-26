@@ -8,8 +8,7 @@ export const Container = styled.View`
   align-self: center;
   margin-top: 30%;
   margin-bottom: 10%;
-  padding: 4%;
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.2);
+  padding: 3%;
   elevation: 4;
 `;
 
@@ -19,7 +18,10 @@ export const ItemRow = styled.View`
   flex-direction: row;
   align-items: center;
   margin: 1%;
-  padding: 2%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  padding-right: 4%;
+  padding-left: 4%;
   elevation: 4;
 `;
 
@@ -28,11 +30,6 @@ export const Row = styled.View`
   align-content: center;
   justify-content: center;
   margin: 1%;
-`;
-
-export const View = styled.View`
-  flex-direction: row;
-  align-self: center;
 `;
 
 export const Column = styled.View`
@@ -55,14 +52,13 @@ export const Text = styled.Text`
   width: 50%;
   font-size: ${Responsive(16)}px;
   font-weight: bold;
-  text-align: center;
+  text-align: ${props => (props.textAlign ? props.textAlign : 'center')};
   color: #fff;
-  padding: 0.5%;
 `;
 
 export const Next = styled.TouchableOpacity`
   width: 20%;
-  height: 80%;
+  height: 100%;
   align-self: center;
   position: absolute;
   left: 80%;
@@ -70,7 +66,7 @@ export const Next = styled.TouchableOpacity`
 
 export const Previous = styled.TouchableOpacity`
   width: 20%;
-  height: 80%;
+  height: 100%;
   align-self: center;
   position: absolute;
   left: 0%;

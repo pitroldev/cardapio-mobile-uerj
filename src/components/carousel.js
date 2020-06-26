@@ -7,7 +7,6 @@ import {
   Row,
   Column,
   ItemRow,
-  View,
   Next,
   Previous,
 } from './styles_carousel';
@@ -47,10 +46,16 @@ const CarouselView = props => {
                   ? item + ',' + 'Nenhum'
                   : item + ',' + parseName(day.item[key + 4], item)
               }>
-              <Text importantForAccessibility={'no'} accessible={false}>
+              <Text
+                importantForAccessibility={'no'}
+                accessible={false}
+                textAlign={'left'}>
                 {item}
               </Text>
-              <Text importantForAccessibility={'no'} accessible={false}>
+              <Text
+                importantForAccessibility={'no'}
+                accessible={false}
+                textAlign={'right'}>
                 {parseName(day.item[key + 4], item)}
               </Text>
             </ItemRow>
@@ -61,7 +66,7 @@ const CarouselView = props => {
   }
 
   return (
-    <View>
+    <>
       <Next
         accessible={true}
         importantForAccessibility={'yes'}
@@ -95,7 +100,7 @@ const CarouselView = props => {
         sliderWidth={Responsive(425)}
         itemWidth={Responsive(400)}
       />
-    </View>
+    </>
   );
 };
 

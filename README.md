@@ -2,7 +2,7 @@
 <img src="./resources/web_hi_res_512.png" width="150" alt="Logo do Cardápio Mobile UERJ" />
 <h1>Cardápio Mobile UERJ</h1>    
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/releases">
-<img src="https://img.shields.io/badge/version-1.01-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
+<img src="https://img.shields.io/badge/version-1.02-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
 </a>
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/blob/master/LICENSE.txt">
 <img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />    
@@ -17,9 +17,9 @@
 
 ## 📃 Descrição
 
-    Cardápio Mobile UERJ é um aplicativo de código aberto feito para promover facilidade e maior acessibilidade ao cardápio do restaurante universitário da UERJ.
+Cardápio Mobile UERJ é um aplicativo de código aberto feito para promover facilidade e maior acessibilidade ao cardápio do restaurante universitário da UERJ.
 
-    Dentro do aplicativo também contém links de acesso para o site oficial da [UERJ](https://www.uerj.br/) e para o site oficial do [Restaurante Universitário](http://www.restauranteuniversitario.uerj.br/index.html).
+Dentro do aplicativo também contém links de acesso para o site oficial da [UERJ](https://www.uerj.br/) e para o site oficial do [Restaurante Universitário](http://www.restauranteuniversitario.uerj.br/index.html).
 
 ## 🚀 Motivação
 
@@ -33,11 +33,11 @@
 
 ## ⚙ Como funciona?
 
-    O Cardápio Mobile UERJ se baseia completamente na forma e estruturação do site do [Restaurante Universitário da UERJ](http://www.restauranteuniversitario.uerj.br/cardapio.html), que mantêm uma estrutura e padrão de formatação fixos desde a sua data de lançamento. O Aplicativo acessa o cardápio e salva a resposta do site na memória do celular, após isso ele processa e organiza essas informações utilizando [JQuery](https://jquery.com/) e programação orientada a objetos. Após organizado, o aplicativo renderiza em tela as informações, formatando o texto, corrigindo acentuação, pontuação e removendo a abreviação das palavras, tudo para a melhor experiência de deficintes visuais que utilizam o Talkback no celular.
+O Cardápio Mobile UERJ se baseia completamente na forma e estruturação do site do [Restaurante Universitário da UERJ](http://www.restauranteuniversitario.uerj.br/cardapio.html), que mantêm uma estrutura e padrão de formatação fixos desde a sua data de lançamento. O Aplicativo acessa o cardápio e salva a resposta do site na memória do celular, após isso ele processa e organiza essas informações utilizando [JQuery](https://jquery.com/) e programação orientada a objetos. Após organizado, o aplicativo renderiza em tela as informações, formatando o texto, corrigindo acentuação, pontuação e removendo a abreviação das palavras, tudo para a melhor experiência de deficintes visuais que utilizam o Talkback no celular.
 
 ## 🛠 O que foi utilizado?
 
-    Foi utilizado Javascript como linguagem de programação, [React-Native](https://github.com/facebook/react-native) como principal framework, JQuery ([react-native-cheerio](https://github.com/leon3110l/react-native-cheerio)) para a busca das informações e outras diversas libs para fins de abstração.
+Foi utilizado Javascript como linguagem de programação, [React-Native](https://github.com/facebook/react-native) como principal framework, JQuery ([react-native-cheerio](https://github.com/leon3110l/react-native-cheerio)) para a busca das informações e outras diversas libs para fins de abstração.
 
 ## 🎨 Demonstração
 
