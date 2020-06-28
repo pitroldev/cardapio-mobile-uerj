@@ -24,6 +24,7 @@ export default function parser(string, info) {
     string = string.replace(', ', '\n'); // Virgula -> Quebra de Linha
     string = string.replace(' e f', '\nF'); // Quebra de Linha pro feijão
     string = string.replace('arroz', 'Arroz'); // arroz -> Arroz
+    string = string.replace(' a ', ' à '); // Crase no a entre palavras:: Lasanha a Bolonhesa -> Lasanha à Bolonhesa
 
     return string;
   } catch (e) {

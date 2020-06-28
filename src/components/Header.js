@@ -30,7 +30,7 @@ const HeaderV = styled.View`
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   z-index: 1;
-  elevation: 4;
+  elevation: 6;
 `;
 
 const RowAbsolute = styled.View`
@@ -46,7 +46,7 @@ const Icon = styled(EntypoIcon)`
 `;
 
 const Title = styled.Text`
-  font-size: ${Responsive(22)}px;
+  font-size: ${Responsive(24)}px;
   font-weight: bold;
   color: #fff;
   align-self: center;

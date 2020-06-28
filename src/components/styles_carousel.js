@@ -64,10 +64,6 @@ export const Next = styled.TouchableOpacity`
   left: 80%;
 `;
 
-export const Previous = styled.TouchableOpacity`
-  width: 20%;
-  height: 100%;
-  align-self: center;
-  position: absolute;
+export const Previous = styled(Next)`
   left: 0%;
 `;

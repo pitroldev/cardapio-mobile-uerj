@@ -10,7 +10,7 @@ const Icon = styled(EntypoIcon)`
 `;
 
 const Title = styled.Text`
-  font-size: ${Responsive(18)}px;
+  font-size: ${Responsive(20)}px;
   font-weight: bold;
   color: #fff;
   align-self: center;

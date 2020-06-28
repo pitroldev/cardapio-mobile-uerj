@@ -23,7 +23,7 @@ export const AboutView = styled.View`
   padding: 5%;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  elevation: 12;
+  elevation: 6;
 `;
 
 export const AboutTitle = styled.Text`

@@ -20,7 +20,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const Text = styled.Text`
-  font-size: ${Responsive(15)}px;
+  font-size: ${Responsive(14)}px;
   font-weight: bold;
   text-align: center;
   color: #fff;
@@ -28,12 +28,8 @@ export const Text = styled.Text`
   margin-top: 4%;
 `;
 
-export const DarkText = styled.Text`
-  font-size: ${Responsive(15)}px;
-  font-weight: bold;
-  text-align: center;
+export const DarkText = styled(Text)`
   color: #333;
-  align-self: center;
   margin-top: 2%;
 `;
 

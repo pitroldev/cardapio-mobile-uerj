@@ -9,7 +9,7 @@ export const Refresh = styled.ScrollView`
 `;
 
 export const Loading = styled.ActivityIndicator`
-  margin-top: 10%;
+  margin-top: 50%;
 `;
 
 export const Background = styled.View`
