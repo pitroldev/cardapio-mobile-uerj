@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Animated } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
   Container,

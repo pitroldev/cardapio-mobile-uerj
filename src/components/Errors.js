@@ -19,9 +19,14 @@ const Title = styled.Text`
 const Column = styled.View`
   flex: 1;
   padding: 2%;
-  margin-top: ${props => (props.margin ? props.margin : 0)}%;
-  align-items: center;
+  align-self: center;
   justify-content: flex-end;
+`;
+
+const Refresh = styled.TouchableOpacity`
+  flex: 1;
+  background-color: #016ba5;
+  margin-top: 50%;
 `;
 
 const Text = styled.Text`
@@ -52,10 +57,10 @@ export const ParseErrorHeader = () => (
   </Column>
 );
 
-export const NetworkErrorView = () => (
-  <Column margin={25}>
+export const NetworkErrorView = props => (
+  <Refresh onPress={() => props.getCardapio()}>
     <Icon name={'warning'} size={Responsive(60)} color={'#fff'} margin={10} />
     <Title>Ops... Ocorreu um erro :(</Title>
     <Title>{'\n'}Sem conexão disponível.</Title>
-  </Column>
+  </Refresh>
 );

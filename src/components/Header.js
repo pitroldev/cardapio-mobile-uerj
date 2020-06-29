@@ -12,32 +12,30 @@ export const Loading = styled.ActivityIndicator`
   margin: 10%;
 `;
 
-const Background = styled.View`
-  justify-content: center;
-  height: 200%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-`;
-
 const HeaderV = styled.View`
   background-color: #0080c6;
-  height: 110%;
-  top: -100%;
+  height: 210%;
+  top: -200%;
   width: 100%;
+  position: absolute;
   align-items: center;
   justify-content: flex-end;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   z-index: 1;
-  elevation: 6;
+  elevation: 12;
 `;
 
 const RowAbsolute = styled.View`
+  background-color: rgba(255, 255, 255, 0.25);
   flex-direction: row;
-  align-self: center;
   position: absolute;
-  top: 5%;
+  align-self: center;
+  justify-content: center;
+  padding: 1%;
+  bottom: 12%;
+  border-radius: 40px;
+  elevation: 12;
 `;
 
 const Icon = styled(EntypoIcon)`
@@ -67,7 +65,7 @@ const Header = props => {
   useEffect(() => {}, [props.offline, props.parseError]);
 
   return (
-    <Background pointerEvents={'none'}>
+    <>
       <HeaderView
         style={[
           {
@@ -76,10 +74,7 @@ const Header = props => {
         ]}>
         {props.loading && <Loading size={Responsive(60)} color="#fff" />}
         {props.parseError ? (
-          <ParseErrorHeader
-            getCardapio={props.getCardapio}
-            refreshing={props.loading}
-          />
+          <ParseErrorHeader />
         ) : (
           <Title
             accessible={true}
@@ -102,7 +97,7 @@ const Header = props => {
           <Text>Você está offline</Text>
         </RowAbsolute>
       )}
-    </Background>
+    </>
   );
 };
 

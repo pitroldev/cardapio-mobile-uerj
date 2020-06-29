@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RefreshControl, StatusBar, Animated } from 'react-native';
+import { StatusBar, Animated } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 const cheerio = require('react-native-cheerio');
 import { RUapi } from '../../services/axios';
@@ -12,9 +12,8 @@ import About from '../../components/About';
 import { ParseErrorView, NetworkErrorView } from '../../components/Errors';
 import Header from '../../components/Header';
 
-import { Refresh, Loading, Background } from './styles';
-
-const CardapioView = Animated.createAnimatedComponent(Refresh);
+import { Loading, Background, View } from './styles';
+const CardapioView = Animated.createAnimatedComponent(View);
 
 export default class Main extends Component {
   state = {
@@ -235,39 +234,40 @@ export default class Main extends Component {
     return (
       <Background>
         <StatusBar backgroundColor={this.state.about ? '#eaeaea' : '#0080c6'} />
-        <Header
-          parseError={this.state.parseError}
-          offline={this.state.offline}
-          getCardapio={this.getCardapio}
-          loading={this.state.loading}
-          height={this.state.headerHeight}
-        />
         <About
           visible={this.state.about}
           setState={state => this.setState(state)}
         />
+        <Header
+          parseError={this.state.parseError}
+          offline={this.state.offline}
+          loading={this.state.loading}
+          height={this.state.headerHeight}
+        />
+
         <CardapioView
           accessible={false}
           importantForAccessibility={'no'}
-          refreshControl={
-            <RefreshControl
-              refreshing={false}
-              onRefresh={() => this.getCardapio()}
-            />
-          }
           style={[
             {
               translateY: this.state.menuHeight,
             },
           ]}>
           {this.state.networkError && !this.state.offine ? (
-            <NetworkErrorView />
+            <NetworkErrorView
+              getCardapio={this.getCardapio}
+              menuHeight={this.state.menuHeight}
+            />
           ) : this.state.parseError ? (
             <ParseErrorView />
           ) : this.state.loading ? (
             <Loading size={Responsive(60)} color="#fff" />
           ) : (
-            <CarouselView data={this.state.data} />
+            <CarouselView
+              data={this.state.data}
+              getCardapio={this.getCardapio}
+              menuHeight={this.state.menuHeight}
+            />
           )}
         </CardapioView>
         <Footer

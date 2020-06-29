@@ -26,8 +26,9 @@ AccessibilityInfo.isScreenReaderEnabled().then(res => {
   AccessibilityIsOn = res;
 });
 
+const FooterView = Animated.createAnimatedComponent(FooterV);
+
 const Footer = props => {
-  const FooterView = Animated.createAnimatedComponent(FooterV);
   return (
     <FooterView
       style={[

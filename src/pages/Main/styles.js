@@ -1,13 +1,5 @@
 import styled from 'styled-components/native';
 
-export const Refresh = styled.ScrollView`
-  background-color: #016ba5;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  elevation: 6;
-  z-index: 2;
-`;
-
 export const Loading = styled.ActivityIndicator`
   margin-top: 50%;
 `;
@@ -15,4 +7,12 @@ export const Loading = styled.ActivityIndicator`
 export const Background = styled.View`
   flex: 1;
   background-color: #01507c;
+`;
+
+export const View = styled.ScrollView`
+  flex: 1;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  background-color: #016ba5;
+  elevation: 6;
 `;
