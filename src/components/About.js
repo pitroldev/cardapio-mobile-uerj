@@ -1,12 +1,12 @@
 import React from 'react';
 import { Linking } from 'react-native';
-
-import ProfilePicture from './profilePicture';
-
-import Responsive from '../utils/responsive';
-import { Icon, DarkText, Row, Button } from './styles';
 import styled from 'styled-components/native';
 import Modal from 'react-native-modal';
+
+import AppLogo from '../resources/App_Logo.svg';
+import { version } from '../../package.json';
+import Responsive from '../utils/responsive';
+import { Icon, DarkText, Row, Button } from './styles';
 
 export const AboutModal = styled(Modal)`
   flex: 1;
@@ -23,6 +23,17 @@ export const AboutView = styled.View`
   padding: 5%;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+  elevation: 6;
+`;
+
+export const Logo = styled.View`
+  background-color: #0080c6;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  border-radius: ${props => props.size * 2}px;
+  align-self: center;
+  padding: 4%;
+  margin: 2.5%;
   elevation: 6;
 `;
 
@@ -45,12 +56,15 @@ const About = props => (
     onBackdropPress={() => props.setState({ about: false })}
     onBackButtonPress={() => props.setState({ about: false })}>
     <AboutView>
-      <ProfilePicture size={90} />
+      <Logo size={100}>
+        <AppLogo />
+      </Logo>
+      <DarkText>Versão {version}</DarkText>
       <AboutTitle>Desenvolvido por Petro Cardoso.</AboutTitle>
       <Row>
         <Button
           onPress={() => {
-            const url = 'https://github.com/pitroldev';
+            const url = 'https://github.com/pitroldev/cardapio-mobile-uerj';
             Linking.canOpenURL(url).then(supported => {
               supported && Linking.openURL(url);
             });

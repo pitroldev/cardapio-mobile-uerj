@@ -1,6 +1,6 @@
 {
   "name": "cardapioMobileUerj",
-  "version": "1.03",
+  "version": "1.04",
   "author": "Petro Cardoso",
   "license": "Apache",
   "private": true,
@@ -20,13 +20,11 @@
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-cheerio": "^1.0.0-rc.4",
-    "react-native-linear-gradient": "^2.5.6",
     "react-native-modal": "^11.5.6",
-    "react-native-shimmer-placeholder": "^1.0.36",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^12.1.0",
     "react-native-svg-transformer": "^0.14.3",
-    "react-native-vector-icons": "^6.6.0",
+    "react-native-vector-icons": "6.6.0",
     "react-native-webview": "^10.2.3",
     "styled-components": "^5.1.1"
   },

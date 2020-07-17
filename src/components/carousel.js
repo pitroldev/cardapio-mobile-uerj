@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Animated } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
   Container,
@@ -37,7 +36,7 @@ const CarouselView = props => {
           {info.map((item, key) => (
             <ItemRow
               key={key}
-              color={key % 2 === 0 ? '#0080c6' : '#00AFDF'}
+              color={key % 2 === 0 ? '#016BA5' : '#00AFDF'}
               accessible={ActivePage === day.index ? true : false}
               importantForAccessibility={
                 ActivePage === day.index ? 'yes' : 'no'

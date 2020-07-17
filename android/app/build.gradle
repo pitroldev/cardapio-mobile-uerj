@@ -132,8 +132,8 @@ android {
         applicationId "com.cardapiomobileuerj"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "1.03"
+        versionCode 5
+        versionName "1.04"
         project.ext.set("archivesBaseName", "cardapio-mobile-uerj-" + defaultConfig.versionName);
     }
     splits {
