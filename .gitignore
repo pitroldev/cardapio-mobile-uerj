@@ -1,6 +1,6 @@
 nextcommit.txt
 yarn.lock
-android/gradle.properties
+keystore.properties
 android/app/cardapio-mobile-uerj-key.keystore
 # OSX
 #

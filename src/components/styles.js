@@ -1,15 +1,13 @@
 import styled from 'styled-components/native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-import Responsive from '../utils/responsive';
-
 export const Icon = styled(EntypoIcon)`
-  margin: ${props => (props.margin ? props.margin : 0)}%;
+  margin: ${(props) => (props.margin ? props.margin : 0)}%;
   align-self: center;
 `;
 
 export const Title = styled.Text`
-  font-size: ${Responsive(20)}px;
+  font-size: 20px;
   font-weight: bold;
   color: #fff;
   align-self: center;
@@ -20,11 +18,11 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const Text = styled.Text`
-  font-size: ${Responsive(14)}px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
-  color: #fff;
   align-self: center;
+  color: #fff;
   margin-top: 4%;
 `;
 

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Animated } from 'react-native';
-import Responsive from '../utils/responsive';
+import React, {useEffect} from 'react';
+import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-import { ParseErrorHeader } from './Errors';
+import {ParseErrorHeader} from './Errors';
 
 export const Loading = styled.ActivityIndicator`
   align-self: center;
@@ -39,12 +38,12 @@ const RowAbsolute = styled.View`
 `;
 
 const Icon = styled(EntypoIcon)`
-  margin: ${props => (props.margin ? props.margin : 0)}%;
+  margin: ${(props) => (props.margin ? props.margin : 0)}%;
   align-self: center;
 `;
 
 const Title = styled.Text`
-  font-size: ${Responsive(24)}px;
+  font-size: 24px;
   font-weight: bold;
   color: #fff;
   align-self: center;
@@ -52,14 +51,14 @@ const Title = styled.Text`
 `;
 
 const Text = styled.Text`
-  font-size: ${Responsive(16)}px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   color: #fff;
   align-self: center;
 `;
 
-const Header = props => {
+const Header = (props) => {
   const HeaderView = Animated.createAnimatedComponent(HeaderV);
 
   useEffect(() => {}, [props.offline, props.parseError]);
@@ -72,7 +71,7 @@ const Header = props => {
             translateY: props.height,
           },
         ]}>
-        {props.loading && <Loading size={Responsive(60)} color="#fff" />}
+        {props.loading && <Loading size={60} color="#fff" />}
         {props.parseError ? (
           <ParseErrorHeader />
         ) : (
@@ -88,7 +87,7 @@ const Header = props => {
         <RowAbsolute>
           <Icon
             name={'warning'}
-            size={Responsive(25)}
+            size={25}
             color={'#ff0'}
             margin={2}
             accessible={false}

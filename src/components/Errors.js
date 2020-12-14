@@ -1,16 +1,15 @@
 import React from 'react';
-import { WebView } from 'react-native-webview';
+import {WebView} from 'react-native-webview';
 import styled from 'styled-components/native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-import Responsive from '../utils/responsive';
 
 const Icon = styled(EntypoIcon)`
-  margin: ${props => (props.margin ? props.margin : 0)}%;
+  margin: ${(props) => (props.margin ? props.margin : 0)}%;
   align-self: center;
 `;
 
 const Title = styled.Text`
-  font-size: ${Responsive(20)}px;
+  font-size: 20px;
   font-weight: bold;
   color: #fff;
   align-self: center;
@@ -30,7 +29,7 @@ const Refresh = styled.TouchableOpacity`
 `;
 
 const Text = styled.Text`
-  font-size: ${Responsive(14)}px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   color: #fff;
@@ -43,7 +42,7 @@ export const ParseErrorView = () => (
     source={{
       uri: 'http://www.restauranteuniversitario.uerj.br/cardapio.html',
     }}
-    style={{ height: Responsive(800) }}
+    style={{height: 800}}
   />
 );
 
@@ -57,9 +56,9 @@ export const ParseErrorHeader = () => (
   </Column>
 );
 
-export const NetworkErrorView = props => (
+export const NetworkErrorView = (props) => (
   <Refresh onPress={() => props.getCardapio()}>
-    <Icon name={'warning'} size={Responsive(60)} color={'#fff'} margin={10} />
+    <Icon name={'warning'} size={60} color={'#fff'} margin={10} />
     <Title>Ops... Ocorreu um erro :(</Title>
     <Title>{'\n'}Sem conexão disponível.</Title>
   </Refresh>

@@ -1,13 +1,12 @@
 import React from 'react';
-import { Linking, AccessibilityInfo, Animated } from 'react-native';
+import {Linking, AccessibilityInfo, Animated} from 'react-native';
 import RULogo from '../resources/RU_Logo.svg';
 import UERJLogo from '../resources/UERJ_Logo.svg';
 import styled from 'styled-components/native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-import Responsive from '../utils/responsive';
 
 export const Icon = styled(EntypoIcon)`
-  margin: ${props => (props.margin ? props.margin : 0)}%;
+  margin: ${(props) => (props.margin ? props.margin : 0)}%;
   align-self: center;
 `;
 
@@ -22,13 +21,13 @@ export const FooterV = styled.View`
 `;
 
 let AccessibilityIsOn;
-AccessibilityInfo.isScreenReaderEnabled().then(res => {
+AccessibilityInfo.isScreenReaderEnabled().then((res) => {
   AccessibilityIsOn = res;
 });
 
 const FooterView = Animated.createAnimatedComponent(FooterV);
 
-const Footer = props => {
+const Footer = (props) => {
   return (
     <FooterView
       style={[
@@ -40,26 +39,26 @@ const Footer = props => {
         accessibilityLabel="Acessar o site oficial do restaurante universitario da uerj."
         onPress={() => {
           const url = 'http://www.restauranteuniversitario.uerj.br/index.html';
-          Linking.canOpenURL(url).then(supported => {
+          Linking.canOpenURL(url).then((supported) => {
             supported && Linking.openURL(url);
           });
         }}>
-        <RULogo height={Responsive(50)} width={Responsive(50)} />
+        <RULogo height={50} width={50} />
       </Button>
       <Button
         accessibilityLabel="Acessar o site oficial da uerj."
         onPress={() => {
           const url = 'https://www.uerj.br/';
-          Linking.canOpenURL(url).then(supported => {
+          Linking.canOpenURL(url).then((supported) => {
             supported && Linking.openURL(url);
           });
         }}>
-        <UERJLogo height={Responsive(50)} width={Responsive(50)} />
+        <UERJLogo height={50} width={50} />
       </Button>
       <Button
-        onPress={() => !AccessibilityIsOn && props.setState({ about: true })}
+        onPress={() => !AccessibilityIsOn && props.showAbout()}
         accessibilityLabel="Aplicativo desenvolvido por Petro Cardoso.">
-        <Icon name={'info-with-circle'} color={'#fff'} size={Responsive(45)} />
+        <Icon name={'info-with-circle'} color={'#fff'} size={45} />
       </Button>
     </FooterView>
   );

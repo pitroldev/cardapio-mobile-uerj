@@ -1,20 +1,76 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Carousel from 'react-native-snap-carousel';
-import {
-  Container,
-  Text,
-  DateTitle,
-  Row,
-  Column,
-  ItemRow,
-  Next,
-  Previous,
-} from './styles_carousel';
-import Responsive from '../utils/responsive';
-import parseName from '../utils/parseName';
+import styled from 'styled-components/native';
 
-const CarouselView = props => {
-  const { info, days, today } = props.data;
+const Container = styled.View`
+  flex: 1;
+  background-color: #fff;
+  width: 85%;
+  align-self: center;
+  margin-top: 30%;
+  margin-bottom: 10%;
+  padding: 3%;
+  elevation: 4;
+`;
+
+const ItemRow = styled.View`
+  flex: 1;
+  background-color: ${(props) => (props.color ? props.color : '#0080c6')};
+  flex-direction: row;
+  align-items: center;
+  margin: 1%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  padding-right: 4%;
+  padding-left: 4%;
+  elevation: 4;
+`;
+
+const Row = styled.View`
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  margin: 1%;
+`;
+
+const Column = styled.View`
+  flex: 1;
+`;
+
+const DateTitle = styled.Text`
+  font-size: ${20}px;
+  font-weight: bold;
+  color: #333;
+  align-self: center;
+  margin-bottom: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+`;
+
+const Text = styled.Text`
+  flex: 1;
+  width: 50%;
+  font-size: ${16}px;
+  font-weight: bold;
+  text-align: ${(props) => (props.textAlign ? props.textAlign : 'center')};
+  color: #fff;
+`;
+
+const Next = styled.TouchableOpacity`
+  width: 20%;
+  height: 100%;
+  align-self: center;
+  position: absolute;
+  left: 80%;
+`;
+
+const Previous = styled(Next)`
+  left: 0%;
+`;
+
+const CarouselView = (props) => {
+  const {info, days, today} = props.data;
 
   const [Ref, setRef] = useState({});
   const [ActivePage, setActivePage] = useState(today);
@@ -44,7 +100,7 @@ const CarouselView = props => {
               accessibilityLabel={
                 day.item[key + 4] === '-'
                   ? item + ',' + 'Nenhum'
-                  : item + ',' + parseName(day.item[key + 4], item)
+                  : item + ',' + day.item[key + 4]
               }>
               <Text
                 importantForAccessibility={'no'}
@@ -56,7 +112,7 @@ const CarouselView = props => {
                 importantForAccessibility={'no'}
                 accessible={false}
                 textAlign={'right'}>
-                {parseName(day.item[key + 4], item)}
+                {day.item[key + 4]}
               </Text>
             </ItemRow>
           ))}
@@ -93,12 +149,12 @@ const CarouselView = props => {
         layout={'stack'}
         layoutCardOffset={18}
         swipeThreshold={15}
-        ref={c => setRef(c)}
+        ref={(c) => setRef(c)}
         data={days}
         firstItem={today}
         renderItem={renderItem}
-        sliderWidth={Responsive(425)}
-        itemWidth={Responsive(400)}
+        sliderWidth={425}
+        itemWidth={400}
       />
     </>
   );
