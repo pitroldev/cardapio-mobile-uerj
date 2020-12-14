@@ -23,8 +23,8 @@ export const Text = styled.Text`
   font-size: ${Responsive(14)}px;
   font-weight: bold;
   text-align: center;
-  color: #fff;
   align-self: center;
+  color: #fff;
   margin-top: 4%;
 `;
 

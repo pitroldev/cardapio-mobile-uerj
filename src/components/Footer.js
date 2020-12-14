@@ -57,7 +57,7 @@ const Footer = props => {
         <UERJLogo height={Responsive(50)} width={Responsive(50)} />
       </Button>
       <Button
-        onPress={() => !AccessibilityIsOn && props.setState({ about: true })}
+        onPress={() => !AccessibilityIsOn && props.showAbout()}
         accessibilityLabel="Aplicativo desenvolvido por Petro Cardoso.">
         <Icon name={'info-with-circle'} color={'#fff'} size={Responsive(45)} />
       </Button>

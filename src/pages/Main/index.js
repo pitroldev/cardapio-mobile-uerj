@@ -1,39 +1,34 @@
-import React, { Component } from 'react';
-import { StatusBar, Animated } from 'react-native';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useRef } from 'react';
+import { Animated } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-const cheerio = require('react-native-cheerio');
-import { RUapi } from '../../services/axios';
 
 import Responsive from '../../utils/responsive';
 
 import CarouselView from '../../components/carousel';
 import Footer from '../../components/Footer';
-import About from '../../components/About';
 import { ParseErrorView, NetworkErrorView } from '../../components/Errors';
 import Header from '../../components/Header';
+
+import parseData from './parser';
 
 import { Loading, Background, View } from './styles';
 const CardapioView = Animated.createAnimatedComponent(View);
 
-export default class Main extends Component {
-  state = {
-    loading: true,
-    htmlString: '',
-    data: {},
+const Main = props => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({});
+  const [errors, setErrors] = useState({
     networkError: false,
     parseError: false,
     offline: false,
-    about: false,
-    headerHeight: new Animated.Value(Responsive(800)),
-    menuHeight: new Animated.Value(Responsive(200)),
-    footerHeight: new Animated.Value(Responsive(600)),
-  };
+  });
 
-  componentDidMount() {
-    this.getCardapio();
-  }
+  const headerHeight = useRef(new Animated.Value(Responsive(800))).current;
+  const menuHeight = useRef(new Animated.Value(Responsive(200))).current;
+  const footerHeight = useRef(new Animated.Value(Responsive(600))).current;
 
-  initAnimation = () => {
+  function initAnimation() {
     const options = {
       toValue: 0,
       friction: 7.5,
@@ -41,240 +36,111 @@ export default class Main extends Component {
       duration: 500,
       useNativeDriver: true,
     };
-    Animated.spring(this.state.headerHeight, options).start();
-    Animated.spring(this.state.menuHeight, options).start();
-    Animated.spring(this.state.footerHeight, options).start();
-  };
-
-  offlineCardapio = async () => {
-    try {
-      const htmlString = await AsyncStorage.getItem('@cardapio');
-
-      if (htmlString !== null) {
-        this.setState({ htmlString, offline: true });
-        this.initAnimation();
-        return this.parseData();
-      }
-      throw new Error('Bad Storage');
-    } catch (err) {
-      this.initAnimation();
-      await AsyncStorage.removeItem('@cardapio');
-      return this.setState({
-        networkError: true,
-        loading: false,
-        offline: false,
-      });
-    }
-  };
-
-  getCardapio = async () => {
-    try {
-      this.setState({ loading: true, networkError: false, offline: false });
-
-      const response = await RUapi.get('/cardapio.html');
-
-      const htmlString = response.data;
-
-      await AsyncStorage.setItem('@cardapio', htmlString);
-
-      this.setState({ htmlString });
-
-      return this.parseData();
-    } catch (err) {
-      return this.offlineCardapio();
-    }
-  };
-
-  parseData = () => {
-    try {
-      this.setState({ loading: true, parseError: false });
-      const { htmlString } = this.state;
-      const $ = cheerio.load(htmlString);
-
-      const data = {
-        weeks: 1,
-        info: [],
-        days: [],
-        today: undefined,
-      };
-
-      $('td.info').text((index, text) => {
-        if (index < 8) {
-          data.info.push(text);
-        }
-      });
-
-      $('h1').text((index, text) => {
-        data.weeks = index + 1;
-
-        const split = text.split('');
-        const Year = split[38] + split[39] + split[40] + split[41];
-        const NumberDay = split[18] + split[19];
-        let MonthName = '';
-        let i = 25;
-        while (i < split.length - 7) {
-          MonthName += split[i];
-          i = i + 1;
-        }
-        Object.defineProperty(data, `${index}_segunda`, {
-          value: [parseInt(NumberDay, 10), MonthName, Year, 'Segunda-Feira'],
-          writable: true,
-          enumerable: true,
-          configurable: true,
-        });
-        Object.defineProperty(data, `${index}_terca`, {
-          value: [parseInt(NumberDay, 10) + 1, MonthName, Year, 'Terça-Feira'],
-          writable: true,
-          enumerable: true,
-          configurable: true,
-        });
-        Object.defineProperty(data, `${index}_quarta`, {
-          value: [parseInt(NumberDay, 10) + 2, MonthName, Year, 'Quarta-Feira'],
-          writable: true,
-          enumerable: true,
-          configurable: true,
-        });
-        Object.defineProperty(data, `${index}_quinta`, {
-          value: [parseInt(NumberDay, 10) + 3, MonthName, Year, 'Quinta-Feira'],
-          writable: true,
-          enumerable: true,
-          configurable: true,
-        });
-        Object.defineProperty(data, `${index}_sexta`, {
-          value: [parseInt(NumberDay, 10) + 4, MonthName, Year, 'Sexta-Feira'],
-          writable: true,
-          enumerable: true,
-          configurable: true,
-        });
-      });
-
-      function handleIndex(i) {
-        if (i > 1) {
-          return (i - 1) * 8 + 1;
-        } else {
-          return (i - 1) * 8;
-        }
-      }
-
-      let i = 1;
-      while (i <= data.weeks) {
-        $('td.segunda').text((index, text) => {
-          if (index >= handleIndex(i) && index <= i * 8) {
-            data[`${i - 1}_segunda`].push(text);
-          }
-        });
-        $('td.terca').text((index, text) => {
-          if (index >= handleIndex(i) && index <= i * 8) {
-            data[`${i - 1}_terca`].push(text);
-          }
-        });
-        $('td.quarta').text((index, text) => {
-          if (index >= handleIndex(i) && index <= i * 8) {
-            data[`${i - 1}_quarta`].push(text);
-          }
-        });
-        $('td.quinta').text((index, text) => {
-          if (index >= handleIndex(i) && index <= i * 8) {
-            data[`${i - 1}_quinta`].push(text);
-          }
-        });
-        $('td.sexta').text((index, text) => {
-          if (index >= handleIndex(i) && index <= i * 8) {
-            data[`${i - 1}_sexta`].push(text);
-          }
-        });
-        i = i + 1;
-      }
-
-      if (data.info.length !== 8) {
-        throw new Error('ParseData Error');
-      }
-
-      let j = data.weeks;
-      while (j > 0) {
-        data.days.push(data[`${j - 1}_segunda`]);
-        data.days.push(data[`${j - 1}_terca`]);
-        data.days.push(data[`${j - 1}_quarta`]);
-        data.days.push(data[`${j - 1}_quinta`]);
-        data.days.push(data[`${j - 1}_sexta`]);
-        j = j - 1;
-      }
-
-      const { days } = data;
-
-      let inWeek = false;
-      let counter = 0;
-
-      days.forEach(day => {
-        const now = new Date();
-        if (now.getDate() === day[0]) {
-          data.today = counter;
-          inWeek = true;
-        } else {
-          counter = counter + 1;
-          if (!inWeek) {
-            data.today = days.length - 5;
-          }
-        }
-      });
-
-      this.initAnimation();
-      return this.setState({
-        data,
-        loading: false,
-      });
-    } catch (err) {
-      console.log('erro', err);
-      this.initAnimation();
-      return this.setState({ loading: false, parseError: true });
-    }
-  };
-
-  render() {
-    return (
-      <Background>
-        <StatusBar backgroundColor={this.state.about ? '#eaeaea' : '#0080c6'} />
-        <About
-          visible={this.state.about}
-          setState={state => this.setState(state)}
-        />
-        <Header
-          parseError={this.state.parseError}
-          offline={this.state.offline}
-          loading={this.state.loading}
-          height={this.state.headerHeight}
-        />
-
-        <CardapioView
-          accessible={false}
-          importantForAccessibility={'no'}
-          style={[
-            {
-              translateY: this.state.menuHeight,
-            },
-          ]}>
-          {this.state.networkError && !this.state.offine ? (
-            <NetworkErrorView
-              getCardapio={this.getCardapio}
-              menuHeight={this.state.menuHeight}
-            />
-          ) : this.state.parseError ? (
-            <ParseErrorView />
-          ) : this.state.loading ? (
-            <Loading size={Responsive(60)} color="#fff" />
-          ) : (
-            <CarouselView
-              data={this.state.data}
-              getCardapio={this.getCardapio}
-              menuHeight={this.state.menuHeight}
-            />
-          )}
-        </CardapioView>
-        <Footer
-          setState={state => this.setState(state)}
-          height={this.state.footerHeight}
-        />
-      </Background>
-    );
+    Animated.spring(headerHeight, options).start();
+    Animated.spring(menuHeight, options).start();
+    Animated.spring(footerHeight, options).start();
   }
-}
+
+  async function getStoredData() {
+    try {
+      const storedData = await AsyncStorage.getItem('@cardapio');
+
+      if (storedData) {
+        const parsedData = await JSON.parse(storedData);
+        return parsedData;
+      }
+      throw new Error('Storage Error');
+    } catch (err) {
+      await AsyncStorage.removeItem('@cardapio');
+      return { storageError: true };
+    }
+  }
+
+  async function getOnlineData() {
+    try {
+      setLoading(true);
+      setErrors(c => ({ ...c, networkError: false, offline: false }));
+
+      const response = await fetch(
+        'http://www.restauranteuniversitario.uerj.br/cardapio.html',
+        { method: 'GET', headers: { 'Cache-Control': 'no-cache' } },
+      );
+
+      const html = await response.text();
+
+      const parsedData = parseData(html);
+
+      if (parsedData.error) {
+        setErrors(c => ({ ...c, parseError: true }));
+        throw new Error('Parse data Error');
+      }
+
+      await AsyncStorage.setItem('@cardapio', JSON.stringify(parsedData));
+
+      setData(parsedData);
+      setLoading(false);
+    } catch (err) {
+      const storedData = await getStoredData();
+
+      if (storedData.storageError) {
+        setErrors(c => ({ ...c, networkError: true, offline: false }));
+      } else {
+        setErrors(c => ({ ...c, offline: true }));
+        setData(storedData);
+      }
+
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    async function load() {
+      await getOnlineData();
+      initAnimation();
+    }
+    load();
+  }, []);
+
+  return (
+    <Background>
+      <Header
+        parseError={errors.parseError}
+        offline={errors.offline}
+        height={headerHeight}
+      />
+
+      <CardapioView
+        accessible={false}
+        importantForAccessibility={'no'}
+        style={[
+          {
+            translateY: menuHeight,
+          },
+        ]}>
+        {!errors.parseError && errors.networkError && !errors.offine && (
+          <NetworkErrorView
+            getCardapio={getOnlineData}
+            menuHeight={menuHeight}
+          />
+        )}
+        {errors.parseError && <ParseErrorView />}
+        {loading && <Loading size={Responsive(60)} color="#fff" />}
+        {!loading && !errors.parseError && !errors.networkError && (
+          <CarouselView
+            data={data}
+            getCardapio={getOnlineData}
+            menuHeight={menuHeight}
+          />
+        )}
+      </CardapioView>
+      <Footer showAbout={props.showAbout} height={footerHeight} />
+    </Background>
+  );
+};
+
+export default React.memo(Main, (prev, next) => {
+  if (JSON.stringify(prev) === JSON.stringify(next)) {
+    return true;
+  }
+  return false;
+});

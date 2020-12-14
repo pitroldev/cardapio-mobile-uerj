@@ -2,7 +2,7 @@
 <img src="./resources/web_hi_res_512.png" width="150" alt="Logo do Cardápio Mobile UERJ" />
 <h1>Cardápio Mobile UERJ</h1>    
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/releases">
-<img src="https://img.shields.io/badge/version-1.03-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
+<img src="https://img.shields.io/badge/version-1.05-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
 </a>
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/blob/master/LICENSE.txt">
 <img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />    
@@ -33,7 +33,7 @@ Dentro do aplicativo também contém links de acesso para o site oficial da [UER
 
 ## ⚙ Como funciona?
 
-O Cardápio Mobile UERJ se baseia completamente na forma e estruturação do site do [Restaurante Universitário da UERJ](http://www.restauranteuniversitario.uerj.br/cardapio.html), que mantêm uma estrutura e padrão de formatação fixos desde a sua data de lançamento. O Aplicativo acessa o cardápio e salva a resposta do site na memória do celular, após isso ele processa e organiza essas informações utilizando [JQuery](https://jquery.com/) e programação orientada a objetos. Após organizado, o aplicativo renderiza em tela as informações, formatando o texto, corrigindo acentuação, pontuação e removendo a abreviação das palavras, tudo para a melhor experiência de deficintes visuais que utilizam o Talkback no celular.
+O Cardápio Mobile UERJ se baseia completamente na forma e estruturação do site do [Restaurante Universitário da UERJ](http://www.restauranteuniversitario.uerj.br/cardapio.html), que mantêm uma estrutura e padrão de formatação fixos desde a sua data de lançamento. O Aplicativo acessa o cardápio e salva a resposta do site na memória do celular, após isso ele processa e organiza essas informações utilizando WebScraping ([JQuery](https://jquery.com/)) e programação orientada a objetos. Após organizado, o aplicativo renderiza em tela as informações, formatando o texto, corrigindo acentuação, pontuação e removendo a abreviação das palavras, tudo para a melhor experiência de deficintes visuais que utilizam o Talkback no celular.
 
 ## 🛠 O que foi utilizado?
 
