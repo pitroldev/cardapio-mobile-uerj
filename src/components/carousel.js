@@ -146,6 +146,8 @@ const CarouselView = (props) => {
         }}
       />
       <Carousel
+        importantForAccessibility={'no'}
+        accessible={false}
         layout={'stack'}
         layoutCardOffset={18}
         swipeThreshold={15}
