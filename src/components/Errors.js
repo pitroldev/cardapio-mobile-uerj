@@ -15,13 +15,6 @@ const Title = styled.Text`
   align-self: center;
 `;
 
-const Column = styled.View`
-  flex: 1;
-  padding: 2%;
-  align-self: center;
-  justify-content: flex-end;
-`;
-
 const Refresh = styled.TouchableOpacity`
   flex: 1;
   background-color: #016ba5;
@@ -47,13 +40,10 @@ export const ParseErrorView = () => (
 );
 
 export const ParseErrorHeader = () => (
-  <Column>
-    <Title>Ops... Ocorreu um erro :(</Title>
-    <Text>
-      Mas não se preocupe! Redirecionaremos você direto para o site do
-      Restaurante Universitário...
-    </Text>
-  </Column>
+  <Text>
+    Ops... Ocorreu um erro! Redirecionaremos você direto para o site do
+    Restaurante Universitário...
+  </Text>
 );
 
 export const NetworkErrorView = (props) => (

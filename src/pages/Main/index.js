@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState, useRef} from 'react';
-import {Animated} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import React, {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import CarouselView from '../../components/carousel';
 import Footer from '../../components/Footer';
@@ -11,7 +10,6 @@ import Header from '../../components/Header';
 import parseData from './parser';
 
 import {Loading, Background, View} from './styles';
-const CardapioView = Animated.createAnimatedComponent(View);
 
 const Main = (props) => {
   const [loading, setLoading] = useState(true);
@@ -21,23 +19,6 @@ const Main = (props) => {
     parseError: false,
     offline: false,
   });
-
-  const headerHeight = useRef(new Animated.Value(800)).current;
-  const menuHeight = useRef(new Animated.Value(200)).current;
-  const footerHeight = useRef(new Animated.Value(600)).current;
-
-  function initAnimation() {
-    const options = {
-      toValue: 0,
-      friction: 7.5,
-      tension: 50,
-      duration: 500,
-      useNativeDriver: true,
-    };
-    Animated.spring(headerHeight, options).start();
-    Animated.spring(menuHeight, options).start();
-    Animated.spring(footerHeight, options).start();
-  }
 
   async function getStoredData() {
     try {
@@ -93,49 +74,24 @@ const Main = (props) => {
 
   useEffect(() => {
     getOnlineData();
-    initAnimation();
   }, []);
 
   return (
     <Background>
-      <Header
-        parseError={errors.parseError}
-        offline={errors.offline}
-        height={headerHeight}
-      />
-
-      <CardapioView
-        accessible={false}
-        importantForAccessibility={'no'}
-        style={[
-          {
-            translateY: menuHeight,
-          },
-        ]}>
+      <Header parseError={errors.parseError} offline={errors.offline} />
+      <View accessible={false} importantForAccessibility={'no'}>
         {!errors.parseError && errors.networkError && !errors.offine && (
-          <NetworkErrorView
-            getCardapio={getOnlineData}
-            menuHeight={menuHeight}
-          />
+          <NetworkErrorView getCardapio={getOnlineData} />
         )}
         {errors.parseError && <ParseErrorView />}
         {loading && <Loading size={60} color="#fff" />}
         {!loading && !errors.parseError && !errors.networkError && (
-          <CarouselView
-            data={data}
-            getCardapio={getOnlineData}
-            menuHeight={menuHeight}
-          />
+          <CarouselView data={data} getCardapio={getOnlineData} />
         )}
-      </CardapioView>
-      <Footer showAbout={props.showAbout} height={footerHeight} />
+      </View>
+      <Footer showAbout={props.showAbout} />
     </Background>
   );
 };
 
-export default React.memo(Main, (prev, next) => {
-  if (JSON.stringify(prev) === JSON.stringify(next)) {
-    return true;
-  }
-  return false;
-});
+export default Main;

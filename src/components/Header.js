@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import {Animated} from 'react-native';
+import React from 'react';
 import styled from 'styled-components/native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
@@ -13,8 +12,7 @@ export const Loading = styled.ActivityIndicator`
 
 const HeaderV = styled.View`
   background-color: #0080c6;
-  height: 210%;
-  top: -200%;
+  height: 10%;
   width: 100%;
   position: absolute;
   align-items: center;
@@ -59,18 +57,9 @@ const Text = styled.Text`
 `;
 
 const Header = (props) => {
-  const HeaderView = Animated.createAnimatedComponent(HeaderV);
-
-  useEffect(() => {}, [props.offline, props.parseError]);
-
   return (
     <>
-      <HeaderView
-        style={[
-          {
-            translateY: props.height,
-          },
-        ]}>
+      <HeaderV>
         {props.loading && <Loading size={60} color="#fff" />}
         {props.parseError ? (
           <ParseErrorHeader />
@@ -82,7 +71,7 @@ const Header = (props) => {
             Cardápio Mobile UERJ
           </Title>
         )}
-      </HeaderView>
+      </HeaderV>
       {props.offline && (
         <RowAbsolute>
           <Icon
