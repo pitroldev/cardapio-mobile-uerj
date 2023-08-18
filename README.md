@@ -1,15 +1,15 @@
 <div align="center">
 <img src="./resources/web_hi_res_512.png" width="150" alt="Logo do Cardápio Mobile UERJ" />
-<h1>Cardápio Mobile UERJ</h1>    
+<h1>Cardápio Mobile UERJ</h1>
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/releases">
-<img src="https://img.shields.io/badge/version-1.06-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
+<img src="https://img.shields.io/badge/version-2.0.0-green.svg" alt="Atual versão do Cardápio Mobile UERJ." />
 </a>
 <a href="https://github.com/pitroldev/cardapio-mobile-uerj/blob/master/LICENSE.txt">
-<img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />    
+<img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="Cardápio Mobile UERJ está sob a licença APACHE." />
 </a>
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="Pull Requests são bem vindos!" />
 <br/>
-<br/> 
+<br/>
 <a href="https://play.google.com/store/apps/details?id=com.cardapiomobileuerj">
 <img src="./resources/google-play-badge.png" width=180 alt="Link para o Google Play"/>
 </a>
