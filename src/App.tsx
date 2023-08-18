@@ -16,7 +16,7 @@ import queryClient from '@/services/query-client';
 import FoodMenuPage from '@/pages/FoodMenuPage';
 
 const App = () => {
-  moment.locale('id');
+  moment.locale('pt-br');
 
   const persistor = persistStore(store);
 

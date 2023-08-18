@@ -89,9 +89,9 @@ android {
         applicationId "com.cardapiomobileuerj"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 20
+        versionCode 21
         versionName "2.0.0"
-        project.ext.set("archivesBaseName", "cardapio-mobile-uerj-" + defaultConfig.versionName);
+        setProperty("archivesBaseName", applicationId + "-" + versionName + "-" + versionCode)
     }
     signingConfigs {
         release {
