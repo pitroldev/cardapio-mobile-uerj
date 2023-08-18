@@ -1,40 +1,47 @@
 import React from 'react';
-import {Linking} from 'react-native';
+import {Linking, Modal} from 'react-native';
 
-import AppLogo from '../../resources/App_Logo.svg';
+import AppLogo from '@/resources/App_Logo.svg';
+
 import {version} from '../../../package.json';
+
 import {
-  AboutModal,
   AboutTitle,
   AboutView,
-  Logo,
+  LogoView,
   Icon,
   DarkText,
   Row,
   Button,
-} from './styles';
+  CloseBtn,
+} from './AboutModal.styles';
 
-const About = (props) => (
-  <AboutModal
-    isVisible={props.isVisible}
-    useNativeDriver={true}
-    animationIn="slideInDown"
-    animationOut="slideOutUp"
-    animationInTiming={300}
-    animationOutTiming={300}
-    onBackdropPress={props.hide}
-    onBackButtonPress={props.hide}>
+type Props = {
+  visible: boolean;
+  onHide: () => void;
+};
+
+const AboutModal = ({visible, onHide}: Props) => (
+  <Modal
+    visible={visible}
+    animationType="fade"
+    onRequestClose={onHide}
+    hardwareAccelerated
+    transparent>
     <AboutView>
-      <Logo size={100}>
+      <CloseBtn onPress={onHide}>
+        <Icon name={'cross'} color={'#f33'} size={20} />
+      </CloseBtn>
+      <LogoView>
         <AppLogo />
-      </Logo>
+      </LogoView>
       <DarkText>Versão {version}</DarkText>
-      <AboutTitle>Desenvolvido por Petro Cardoso.</AboutTitle>
+      <AboutTitle>Desenvolvido por Petro Cardoso</AboutTitle>
       <Row>
         <Button
           onPress={() => {
             const url = 'https://github.com/pitroldev/cardapio-mobile-uerj';
-            Linking.canOpenURL(url).then((supported) => {
+            Linking.canOpenURL(url).then(supported => {
               supported && Linking.openURL(url);
             });
           }}>
@@ -44,7 +51,7 @@ const About = (props) => (
         <Button
           onPress={() => {
             const url = 'https://www.linkedin.com/in/petrocardoso/';
-            Linking.canOpenURL(url).then((supported) => {
+            Linking.canOpenURL(url).then(supported => {
               supported && Linking.openURL(url);
             });
           }}>
@@ -55,7 +62,7 @@ const About = (props) => (
           onPress={() => {
             const url =
               'mailto: petrolcds@gmail.com?subject=Cardapio Mobile Uerj';
-            Linking.canOpenURL(url).then((supported) => {
+            Linking.canOpenURL(url).then(supported => {
               supported && Linking.openURL(url);
             });
           }}>
@@ -64,7 +71,7 @@ const About = (props) => (
         </Button>
       </Row>
     </AboutView>
-  </AboutModal>
+  </Modal>
 );
 
-export default About;
+export default AboutModal;
