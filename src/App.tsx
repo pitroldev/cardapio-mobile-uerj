@@ -1,6 +1,8 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
+
 import moment from 'moment';
+import 'moment/locale/pt-br';
 
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
@@ -14,7 +16,7 @@ import queryClient from '@/services/query-client';
 import FoodMenuPage from '@/pages/FoodMenuPage';
 
 const App = () => {
-  moment.locale('pt-br');
+  moment.locale('id');
 
   const persistor = persistStore(store);
 
